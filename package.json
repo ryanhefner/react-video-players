@@ -1,0 +1,76 @@
+{
+  "name": "react-video-players",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "React video player component library that offers a consistent API across YouTube and Vimeo video player React components.",
+  "repository": "ryanhefner/react-video-players",
+  "bugs": "https://github.com/ryanhefner/react-video-players/issues",
+  "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
+  "files": [
+    "VideoPlayer.js",
+    "VimeoPlayer.js",
+    "YouTubePlayer.js",
+    "index.js",
+    "es",
+    "umd"
+  ],
+  "directories": {
+    "lib": "/src"
+  },
+  "main": "index.js",
+  "module": "es/index.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "clean": "git clean -fdX -n . -e node_modules/",
+    "prebuild": "npm run clean",
+    "build": "node ./tools/build.js",
+    "watch": "NODE_ENV=development rollup -c -w",
+    "prepare": "npm run build",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git branch -f latest master",
+    "push-release": "git push origin master && git push --tags",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "react": ">=15"
+  },
+  "dependencies": {
+    "@vimeo/player": "^2.1.0",
+    "lodash.omit": "^4.5.0",
+    "prop-types": "^15.5.10",
+    "youtube-player": "^5.4.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-dev-expression": "^0.2.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "gzip-size": "^3.0.0",
+    "jest": "^20.0.4",
+    "pretty-bytes": "^4.0.2",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.45.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^4.3.1"
+  },
+  "browserify": {
+    "transform": [
+      "loose-envify"
+    ]
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "video",
+    "player",
+    "vimeo",
+    "youtube",
+    "high-order-component"
+  ]
+}
