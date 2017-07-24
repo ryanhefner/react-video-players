@@ -76,7 +76,9 @@ const playerController = (PlayerComponent) => {
         time,
       });
 
-      this.props.onTimeUpdate(time);
+      if (this.props.onTimeUpdate) {
+        this.props.onTimeUpdate(time);
+      }
     }
 
     onPlayerVolumeChange(volume) {
@@ -84,7 +86,9 @@ const playerController = (PlayerComponent) => {
         volume,
       });
 
-      this.props.onVolumeChange(volume);
+      if (this.props.onVolumeChange) {
+        this.props.onVolumeChange(volume);
+      }
     }
 
     render() {
