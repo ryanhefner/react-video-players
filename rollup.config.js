@@ -29,7 +29,7 @@ const config = {
     'react': 'React',
     'youtube-player': 'Player',
   },
-  dest: 'dist/index.js',
+  dest: './index.js',
   banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
   footer: '/* follow me on Twitter! @ryanhefner */',
 };
