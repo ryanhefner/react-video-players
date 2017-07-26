@@ -1,6 +1,6 @@
 {
   "name": "react-video-players",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "license": "MIT",
   "description": "React video player component library that offers a consistent API across YouTube and Vimeo video player React components.",
   "repository": "ryanhefner/react-video-players",
@@ -24,10 +24,9 @@
     "clean": "git clean -fdX -n . -e node_modules/",
     "prebuild": "npm run clean",
     "build": "node ./tools/build.js",
-    "watch": "NODE_ENV=development rollup -c -w",
+    "watch": "babel ./src -d . --ignore __tests__ --watch",
     "prepare": "npm run build",
-    "version": "npm run build && git add -A dist",
-    "postversion": "git branch -f latest master",
+    "prepublishOnly": "node ./tools/build.js",
     "push-release": "git push origin master && git push --tags",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
