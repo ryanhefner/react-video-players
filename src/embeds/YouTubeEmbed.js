@@ -61,8 +61,13 @@ class YouTubeEmbed extends Component {
   }
 
   componentWillUnmount() {
-    this.player.off(this.onPlayerReady);
-    this.player.off(this.onPlayerStateChange);
+    if (this.readyListener) {
+      this.player.off(this.readyListener);
+    }
+
+    if (this.stateChangeListener) {
+      this.player.off(this.stateChangeListener);
+    }
   }
 
   createPlayer() {
@@ -93,8 +98,8 @@ class YouTubeEmbed extends Component {
           videoId,
           width,
         });
-        this.player.on('ready', this.onPlayerReady);
-        this.player.on('stateChange', this.onPlayerStateChange);
+        this.readyListener = this.player.on('ready', this.onPlayerReady);
+        this.stateChangeListener = this.player.on('stateChange', this.onPlayerStateChange);
 
         resolve(this.player);
       }
