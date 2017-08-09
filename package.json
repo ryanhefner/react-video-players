@@ -1,6 +1,6 @@
 {
   "name": "react-video-players",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "license": "MIT",
   "description": "React video player component library that offers a consistent API across YouTube and Vimeo video player React components.",
   "repository": "ryanhefner/react-video-players",
@@ -21,7 +21,7 @@
   "module": "es/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
-    "clean": "git clean -fdX -n . -e node_modules/",
+    "clean": "rm -f index.js && rm -f playerController.js && rm -f VideoPlayer.js && rm -f VimeoPlayer.js && rm -f YouTubePlayer.js && rm -rf embeds && rm -rf es && rm -rf umd",
     "prebuild": "npm run clean",
     "build": "node ./tools/build.js",
     "watch": "babel ./src -d . --ignore __tests__ --watch",
