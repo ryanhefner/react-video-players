@@ -1,6 +1,6 @@
 {
   "name": "react-video-players",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "license": "MIT",
   "description": "React video player component library that offers a consistent API across YouTube and Vimeo video player React components.",
   "repository": "ryanhefner/react-video-players",
