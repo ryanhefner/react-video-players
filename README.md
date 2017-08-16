@@ -7,12 +7,14 @@ consistently in your site or application.
 ## Install
 
 Via [npm](https://npmjs.com/package/react-video-players):
-```
+
+```sh
 npm install --save react-video-players
 ```
 
 Via [Yarn](https://yarn.fyi/react-video-players):
-```
+
+```sh
 yarn add react-video-players
 ```
 
@@ -71,7 +73,7 @@ Available [embedOptions](https://github.com/vimeo/player.js#embed-options).
 
 ##### Example
 
-```
+```js
 import {VimeoPlayer} from 'react-video-players';
 
 ...
@@ -94,8 +96,6 @@ Similar to the `VimeoPlayer` component, the `YouTubePlayer` component is a simpl
 React wrapper around the YouTube Player, allowing for basic control and configuration,
 allowing you to use it how you want within your React sites/applications.
 
-The `YouTubeVideoPlayer`
-
 ##### Props
 
 * `config:Object` - The `config` object is mapped to the `playerVars` property
@@ -108,7 +108,7 @@ to loop the video).
 
 ##### Example
 
-```
+```js
 import {YouTubePlayer} from 'react-video-players';
 
 ...
@@ -140,7 +140,7 @@ for the `<video>` tag, but are not exposed via other props. (Ex. `controls`, `po
 
 ##### Example
 
-```
+```js
 import {VideoPlayer} from 'react-video-players';
 
 ...
@@ -174,7 +174,7 @@ as soon as I can.
 
 #### Example
 
-```
+```js
 import React, {Component} from 'react';
 import {playerController} from 'react-video-players';
 

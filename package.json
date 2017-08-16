@@ -1,18 +1,20 @@
 {
   "name": "react-video-players",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "MIT",
   "description": "React video player component library that offers a consistent API across YouTube and Vimeo video player React components.",
   "repository": "ryanhefner/react-video-players",
   "bugs": "https://github.com/ryanhefner/react-video-players/issues",
   "author": "Ryan Hefner <hi@ryanhefner.com> (https://www.ryanhefner.com)",
   "files": [
+    "es",
+    "index.js",
+    "playerController.js",
+    "src",
+    "umd",
     "VideoPlayer.js",
     "VimeoPlayer.js",
-    "YouTubePlayer.js",
-    "index.js",
-    "es",
-    "umd"
+    "YouTubePlayer.js"
   ],
   "directories": {
     "lib": "/src"
