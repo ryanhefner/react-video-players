@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import omit from 'lodash.omit';
+import omit from 'lomit';
 
 const playerController = (PlayerComponent) => {
   return class extends Component {

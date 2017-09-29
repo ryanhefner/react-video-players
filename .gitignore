@@ -1,5 +1,5 @@
 .DS_Store
-embeds
+/embeds
 es
 node_modules
 umd
