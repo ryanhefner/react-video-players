@@ -6,9 +6,23 @@ import uglify from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
 const config = {
-  entry: 'src/index.js',
-  moduleName: 'react-video-players',
-  exports: 'named',
+  input: 'src/index.js',
+  output: {
+    file: './index.js',
+    format: 'umd',
+    name: 'react-video-players',
+    globals: {
+      '@vimeo/player': 'Player',
+      'react': 'React',
+      'youtube-player': 'Player',
+    },
+    exports: 'named',
+  },
+  external: [
+    '@vimeo/player',
+    'react',
+    'youtube-player',
+  ],
   plugins: [
     babel({
       exclude: 'node_modules/**',
@@ -19,17 +33,6 @@ const config = {
     }),
     json(),
   ],
-  external: [
-    '@vimeo/player',
-    'react',
-    'youtube-player',
-  ],
-  globals: {
-    '@vimeo/player': 'Player',
-    'react': 'React',
-    'youtube-player': 'Player',
-  },
-  dest: './index.js',
   banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
   footer: '/* follow me on Twitter! @ryanhefner */',
 };
