@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import omit from 'lodash.omit';
+import cleanProps from 'clean-react-props';
 import Player from 'youtube-player';
 
 export const PlayerStates = {
@@ -212,29 +212,20 @@ class YouTubeEmbed extends Component {
       };
     }
 
-    const cleanProps = omit(this.props, [
-      'aspectRatio',
-      'config',
+    const omitProps = [
       'height',
       'loop',
-      'play',
-      'playlist',
-      'seekTo',
-      'time',
-      'videoId',
-      'volume',
       'width',
       'onEnded',
       'onError',
       'onPause',
       'onPlay',
-      'onReady',
       'onTimeUpdate',
       'onVolumeChange',
-    ]);
+    ];
 
     return (
-      <div {...cleanProps}>
+      <div {...cleanProps(this.props, omitProps)}>
         <div
           ref={(element) => {
             this.refPlayer = element;

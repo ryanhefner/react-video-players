@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import omit from 'lodash.omit';
+import cleanProps from 'clean-react-props';
 
 class VideoEmbed extends Component {
   constructor(props) {
@@ -158,28 +158,20 @@ class VideoEmbed extends Component {
       };
     }
 
-    const cleanProps = omit(this.props, [
-      'aspectRatio',
-      'config',
-      'controls',
+    const omitProps = [
       'height',
       'loop',
-      'play',
-      'seekTo',
-      'src',
-      'time',
-      'volume',
       'width',
       'onEnded',
       'onError',
       'onPause',
       'onPlay',
-      'onReady',
       'onTimeUpdate',
-    ]);
+      'onVolumeChange',
+    ];
 
     return (
-      <div {...cleanProps}>
+      <div {...cleanProps(this.props, omitProps)}>
         <video
           {...config}
           height="100%"
