@@ -16,6 +16,7 @@ class YouTubeEmbed extends Component {
   constructor(props) {
     super(props);
 
+    this.onPlayerError = this.onPlayerError.bind(this);
     this.onPlayerReady = this.onPlayerReady.bind(this);
     this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
 
@@ -61,6 +62,10 @@ class YouTubeEmbed extends Component {
   }
 
   componentWillUnmount() {
+    if (this.errorListener) {
+      this.player.off(this.errorListener);
+    }
+
     if (this.readyListener) {
       this.player.off(this.readyListener);
     }
@@ -98,6 +103,7 @@ class YouTubeEmbed extends Component {
           videoId,
           width,
         });
+        this.errorListener = this.player.on('error', this.onPlayerError);
         this.readyListener = this.player.on('ready', this.onPlayerReady);
         this.stateChangeListener = this.player.on('stateChange', this.onPlayerStateChange);
 
@@ -109,6 +115,48 @@ class YouTubeEmbed extends Component {
     });
 
     return promise;
+  }
+
+  onPlayerError(evt) {
+    const {
+      onError,
+    } = this.props;
+
+    switch (evt.data) {
+      case 2:
+        return onError({
+          code: evt.data,
+          message: 'Invalid parameter',
+        });
+
+      case 5:
+        return onError({
+          code: evt.data,
+          message: 'HTML 5 error',
+        });
+
+      case 100:
+        return onError({
+          code: evt.data,
+          message: 'Video not found',
+        });
+
+      case 101:
+        return onError({
+          code: evt.data,
+          message: 'Video cannot be played in embedded players',
+        });
+
+      // 🖕
+      case 150:
+        return onError({
+          code: evt.data,
+          message: 'This error is the same as 101. It’s just a 101 error in disguise!',
+        });
+
+      default:
+
+    }
   }
 
   onPlayerReady() {
