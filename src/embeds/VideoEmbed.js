@@ -115,6 +115,11 @@ class VideoEmbed extends Component {
   }
 
   onLoadedMetadata() {
+    const {
+      time,
+      volume,
+    } = this.props;
+
     this.player.currentTime = time;
     this.player.volume = volume;
   }
