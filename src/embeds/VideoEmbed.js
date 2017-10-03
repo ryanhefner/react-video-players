@@ -7,6 +7,8 @@ class VideoEmbed extends Component {
     super(props);
 
     this.onEnded = this.onEnded.bind(this);
+    this.onError = this.onError.bind(this);
+    this.onLoadedMetadata = this.onLoadedMetadata.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onPlay = this.onPlay.bind(this);
     this.onTimeUpdate = this.onTimeUpdate.bind(this);
@@ -23,13 +25,12 @@ class VideoEmbed extends Component {
 
     this.player = this.refPlayer;
     this.player.addEventListener('ended', this.onEnded);
+    this.player.addEventListener('error', this.onError);
+    this.player.addEventListener('loadedmetadata', this.onLoadedMetadata);
     this.player.addEventListener('pause', this.onPause);
     this.player.addEventListener('play', this.onPlay);
     this.player.addEventListener('timeupdate', this.onTimeUpdate);
     this.player.addEventListener('volumechange', this.onVolumeChange);
-
-    this.player.currentTime = time;
-    this.player.volume = volume;
 
     onReady();
 
@@ -79,6 +80,8 @@ class VideoEmbed extends Component {
 
   componentWillUnmount() {
     this.player.removeEventListener('ended', this.onEnded);
+    this.player.removeEventListener('error', this.onError);
+    this.player.removeEventListener('loadedmetadata', this.onLoadedMetadata);
     this.player.removeEventListener('pause', this.onPause);
     this.player.removeEventListener('play', this.onPlay);
     this.player.removeEventListener('timeupdate', this.onTimeUpdate);
@@ -101,6 +104,19 @@ class VideoEmbed extends Component {
     } = this.props;
 
     onEnded(this.getCurrentStatus());
+  }
+
+  onError(evt) {
+    const {
+      onError,
+    } = this.props;
+
+    onError(this.player.error);
+  }
+
+  onLoadedMetadata() {
+    this.player.currentTime = time;
+    this.player.volume = volume;
   }
 
   onPause(evt) {
@@ -161,6 +177,7 @@ class VideoEmbed extends Component {
     const omitProps = [
       'height',
       'loop',
+      'src',
       'width',
       'onEnded',
       'onError',
