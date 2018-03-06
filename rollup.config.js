@@ -8,15 +8,17 @@ import pkg from './package.json';
 const config = {
   input: 'src/index.js',
   output: {
-    file: './index.js',
-    format: 'umd',
     name: 'react-video-players',
+    file: './index.js',
+    exports: 'named',
+    format: 'umd',
     globals: {
       '@vimeo/player': 'Player',
       'react': 'React',
       'youtube-player': 'Player',
     },
-    exports: 'named',
+    banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
+    footer: '/* follow me on Twitter! @ryanhefner */',
   },
   external: [
     '@vimeo/player',
@@ -33,8 +35,6 @@ const config = {
     }),
     json(),
   ],
-  banner: `/*! ${pkg.name} v${pkg.version} | (c) ${new Date().getFullYear()} Ryan Hefner | ${pkg.license} License | https://github.com/${pkg.repository} !*/`,
-  footer: '/* follow me on Twitter! @ryanhefner */',
 };
 
 if (process.env.NODE_ENV === 'production') {
