@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
 const config = {
@@ -28,6 +28,7 @@ const config = {
   plugins: [
     babel({
       exclude: 'node_modules/**',
+      externalHelpers: process.env.BABEL_ENV === 'umd',
     }),
     resolve(),
     commonjs({
