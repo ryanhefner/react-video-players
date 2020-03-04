@@ -3,25 +3,22 @@ const building = BABEL_ENV != undefined && BABEL_ENV !== 'cjs';
 
 const plugins = [];
 
-if (BABEL_ENV === 'umd') {
-  plugins.push('external-helpers');
-}
-
 if (process.env.NODE_ENV === 'production') {
   plugins.push(
-    'dev-expression',
-    'transform-react-remove-prop-types'
+    'babel-plugin-dev-expression',
+    'babel-plugin-transform-react-remove-prop-types'
   );
 }
 
-module.exports = {
-  presets: [
-    ['env', {
-      'loose': true,
-      'modules': building ? false : 'commonjs',
-      'uglify': true,
-    }],
-    'react'
-  ],
-  plugins: plugins
+module.exports = () => {
+  return {
+    presets: [
+      ['@babel/preset-env', {
+        'loose': true,
+        'modules': building ? false : 'commonjs',
+      }],
+      '@babel/preset-react'
+    ],
+    plugins: plugins
+  };
 };
